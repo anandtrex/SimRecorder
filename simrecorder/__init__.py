@@ -7,6 +7,6 @@ from .serialization import Serialization
 
 __all__ = ['Recorder', 'InMemoryDataStore', 'HDF5DataStore', 'ZarrDataStore', 'RedisDataStore', 'RedisServer', 'Serialization', 'DatastoreType', 'CompressionType']
 
-def record_dict(prefix, d):
+def record_dict(recorder, prefix, d):
     for k, v in d.items():
-        recorder.record('{}/{}'.format(prefix, k), np.array(v))
+        recorder.record(f'{prefix}/{k}', v)
