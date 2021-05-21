@@ -1,4 +1,5 @@
 import os
+import warnings
 from enum import Enum
 
 import numpy as np
@@ -78,6 +79,7 @@ class ZarrDataStore(DataStore):
                 self.f.create_dataset(
                     key, data=obj[None, ...], compressor=self.compressor, chunks=self._get_chunk_size(obj))
         else:
+            warnings.warn(f"Storing {key} in pickle format")
             import numcodecs
 
             # self.f.create_dataset("{}/{}".format(key, self.i), data=obj)
